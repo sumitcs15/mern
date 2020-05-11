@@ -1,0 +1,4 @@
+{
+    "mongoURI":"mongodb+srv://sumit_cs15:sumit_cs15@cluster0-i9nmm.mongodb.net/test?retryWrites=true&w=majority",
+    "jwtSecret":"mysecrettoken"
+}

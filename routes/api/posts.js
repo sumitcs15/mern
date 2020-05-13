@@ -28,7 +28,7 @@ const User =require('../../models/Users');
         text: req.body.text,
         name:user.name,
         avatar:user.avatar,
-        user: req.user.body
+        user: req.user.id
 } );
     const post = await newPost.save();
     res.json(post);
@@ -95,12 +95,12 @@ const User =require('../../models/Users');
             return res.status(404).json({msg:'post not found'});
         }
         //checking the user
-        {/*
-console.log(post);
+        
+//console.log(post);
         if(post.user.toString() !== req.user.id) {
             return res.status(401).json({msg:'you are not authorize to do so'});
-        */ }
-    //}
+        }
+    
         await post.remove();
         res.json({mgs:'post deleated'});
 
@@ -121,22 +121,20 @@ console.log(post);
 //@access private
 router.put('/like/:id',
  auth,
-  async(req,res)=>{
+  async (req, res)=>{
 try{
 const post= await Post.findById(req.prams.id);
-{/*
+
 //console.log(post);
 if(post.likes.filter(like =>like.user.toString() === req.user.id).length > 0){
     return res.status(400).json({msg:'post already liked'});
 }
-*/}
 post.likes.unshift({user: req.user.id});
 await post.save();
 res.json(post.likes);
-
 }catch(err){
 console.error(err.message);
-res.status(500).json({msg:'server error'});
+res.status(500).send({msg:'server error'});
 }
 });
 

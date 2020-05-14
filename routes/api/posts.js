@@ -2,6 +2,7 @@ const express =require('express');
 const router = express.Router();
 const {check, validationResult} =require('express-validator');
 const auth = require('../../middleware/auth');
+const checkObjectId = require('../../middleware/checkObjectId');
 const Post =require('../../models/Post'); 
 const Profile =require('../../models/Profile'); 
 const User =require('../../models/Users'); 
@@ -120,12 +121,12 @@ const User =require('../../models/Users');
 //@desc like a post
 //@access private
 router.put('/like/:id',
- auth,
+ [auth, checkObjectId('id')],
   async (req, res)=>{
 try{
 const post= await Post.findById(req.prams.id);
 
-//console.log(post);
+//console.log(post);        
 if(post.likes.filter(like =>like.user.toString() === req.user.id).length > 0){
     return res.status(400).json({msg:'post already liked'});
 }

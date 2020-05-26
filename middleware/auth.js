@@ -7,10 +7,12 @@ module.exports=function(req, res, next) {
     if(!token){
         return res.status(401).json({msg:'no token ,access denied'});
     }
-    //verify token
+    //verifying token  token
     try{
+        // syntex  jwt.verify(token, secretOrPublicKey, [options, callback])
         const decoded=jwt.verify(token, config.get('jwtSecret'));
-        req.user = decoded.user;
+        req.user = decoded.user;  
+        //decode.user->(here user is the ->user id in the payload)
         next();
     }catch(err){
         res.status(401).json({msg:'token not valid'});

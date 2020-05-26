@@ -1,7 +1,7 @@
 const express =require('express');
 const connectDB=require('./config/db');
 const app= express();
-//middleware
+//middleware    
 app.use(express.json({extended: false}));
 
 //connect db

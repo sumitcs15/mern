@@ -73,5 +73,4 @@ jwt.sign(
     }
 });
 
-
  module.exports=router;

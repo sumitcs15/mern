@@ -59,6 +59,7 @@ const {
     linkedin
     
 }=req.body;
+
 const profileFilds={};
 profileFilds.user=req.user.id;
 if(company) profileFilds.company=company;

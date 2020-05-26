@@ -3,8 +3,9 @@ const config=require('config');
 const db=config.get('mongoURI');
 const connectDB= async ()=>{
     try{
-        await mongoose.connect(db,
-            {
+        await mongoose.connect(
+            db,
+            {// for deprication warning
                 useUnifiedTopology:true,
                 useNewUrlParser:true,
                 useCreateIndex:true,

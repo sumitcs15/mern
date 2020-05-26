@@ -17,7 +17,7 @@ alerts: PropTypes.array.isRequired
 }
 // we are mappinppropsg state redux state to props 
 const mapStateToProps  =state =>({
-alerts: state.alerts
+alerts: state.alert
 });
 
 export default connect(mapStateToProps) (Alert);

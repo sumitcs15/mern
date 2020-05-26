@@ -1,11 +1,12 @@
 import React, { Fragment, useState } from 'react';
-import axios from 'axios';
+//import axios from 'axios';
 import { connect } from 'react-redux';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 //prop destructure-> (props) to ({setAlert})
-const Register = () => {
+const Register = ({setAlert,register}) => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,25 +25,7 @@ const Register = () => {
      setAlert('Passwords do not match', 'danger');
     }
     else{
-      const newUser={
-        name,
-        email,
-        password
-      }
-      try{
-        const config={
-          headers: {
-            'Content-Type':'application/json'
-          }
-        }
-        const body =JSON.stringify(newUser);
-        //sending post request
-        const res = await axios.post('/api/users', body ,config);
-        console.log(res.data);
-      }
-        catch(err){
-          console.log(err.response.data);
-        }
+     register({ name, email, password, password2 });
       }
   };
 
@@ -105,6 +88,7 @@ const Register = () => {
 //component name.proptype
 //setAlert is a prop type
 Register.propTypes = {
-  setAlert : PropTypes.func.isRequired
+  setAlert : PropTypes.func.isRequired,
+  register : PropTypes.func.isRequired
 };
-export default connect(null, {setAlert})(Register);
+export default connect(null, {setAlert,register})(Register);

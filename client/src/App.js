@@ -4,14 +4,15 @@ import './App.css';
 import Navbar from './components/layout/Navbar';
 import Landing from './components/layout/Landing';
 
-import  Login from './components/auth/Login'
-import Register from './components/auth/Register'
-import Alert from './components/layout/Alert'
+import  Login from './components/auth/Login';
+import Register from './components/auth/Register';
+import Alert from './components/layout/Alert';
+import Dashboard from './components/dashboard/Dashboard';
 //redux
 import {loadUser } from './actions/auth';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
 import setAuthToken from './utils/setAuthToken';
-import store from './store'
+import store from './store';
  
 if(localStorage.token){
   setAuthToken(localStorage.token);
@@ -32,6 +33,7 @@ const App = ()=> {
       <Switch>
         <Route exact path='/register' component={Register} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/dashboard' component={Dashboard} />
         </Switch>
 
     </section>
